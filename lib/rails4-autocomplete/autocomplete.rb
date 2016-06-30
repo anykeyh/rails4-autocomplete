@@ -42,7 +42,8 @@ module Rails4Autocomplete
     #
     module ClassMethods
       def autocomplete(object, method, options = {})
-        define_method("autocomplete_#{object}_#{method}") do
+        object_with_safe_namespace = object.gsub("/", "_")
+        define_method("autocomplete_#{object_with_safe_namespace}_#{method}") do
 
           method = options[:column_name] if options.has_key?(:column_name)
 
